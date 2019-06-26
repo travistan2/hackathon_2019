@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "test": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "mustache": "latest"
+    "mustache": "latest",
+    "mysql": "^2.17.1"
   }
 }
