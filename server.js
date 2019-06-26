@@ -9,6 +9,7 @@ router.get('/',function(req,res){
   res.sendFile(path.join(viewdir +'/index.html'));
 });
 
+app.use(express.static('public'));
 app.use('/', router);
 
 app.listen(8080);
