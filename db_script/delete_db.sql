@@ -1,0 +1,2 @@
+
+DROP DATABASE cad_db;

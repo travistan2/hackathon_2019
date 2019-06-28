@@ -1,0 +1,9 @@
+
+CREATE DATABASE cad_db;
+USE cad_db;
+
+CREATE TABLE `announcement` (
+	`ID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`type` VARCHAR(100) DEFAULT '',
+	`text` VARCHAR(8000) DEFAULT ''
+);
