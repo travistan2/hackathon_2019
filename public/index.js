@@ -1,6 +1,7 @@
 // index.js
 
 var phrases_cached;
+var http = require('http');
 
 function AddDropDown(raw) {
     return raw.toString().replace(/\[[^\]]*?\]/g, 'zzzz');
