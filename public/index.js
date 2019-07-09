@@ -94,6 +94,17 @@ $(document).ready(function() {
         operator: ['Ulysses', 'Leo'],
         destination: ['Hanoi', 'Bangkok'],
         cancellation_reason: ['door breakdown', 'delay of other cars', 'safety preventive action'],
+        safety_type: ['terrorism activity', 'pedestrian safety'],
+        amount_of_time: ['15 minutes', '30 minutes'],
+        arrive_depart: ['Darwin Upstair', 'Darwin Downstair', 'Einstein Upstair', 'Einstein Downstair'],
+        arrive_depart_time: ['12pm', '1pm', '2pm', '3pm'],
+        intermediate_station: ['Uranus-Curie', 'Quentin-Darwin', 'Newton-Darwin'],
+        number_of_coach: ['5', '6', '7', '8'],
+        front_middle_rear: ['front', 'middle', 'rear'],
+        altered_time: ['18:20', '20:25'],
+        terminal_station: ['Hanoi North', 'New Bangkok'],
+        station: ['Hanoi North', 'Pattaya Centre', 'Chiang Mai', 'New Bangkok'],
+        next_station: ['Hanoi North', 'Pattaya Centre', 'Chiang Mai', 'New Bangkok'],
     };
 
     $('.announce_voice').addClass('disabled');
