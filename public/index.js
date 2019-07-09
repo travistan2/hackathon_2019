@@ -52,6 +52,9 @@ function arrayToUnorderedList(arr_name, arr) {
 function AddDropDown(str, regex, dd) {
 
 	var res = str.match(regex);
+
+    if (!res) return str; 
+
     var indexes = indexOfMatch(str, res);
     var category = [];
     /* remove [ and ] */
@@ -86,6 +89,7 @@ $(document).ready(function() {
     var regex = /\[.+?\]/gi;
     var ddown_master = {
         platform_number: ['1', '2', '3', '4', '5', '6'],
+        platform_name: ['Darwin', 'Newton', 'Einstein', 'Uranus', 'Curie', 'Quentin'],
         cancel_time: ['18:00', '20:00'],
         operator: ['Ulysses', 'Leo'],
         destination: ['Hanoi', 'Bangkok'],
@@ -108,12 +112,14 @@ $(document).ready(function() {
 		});
 	});
 
+    /*
 	$.getJSON('/db/phrases', {
 		format: 'json'
 	})
 	.done(function(data) {
         phrases_cached = data;
 	});
+    */
 
     $('.back_screen').on('click', function() {
         if (selected_id != -1) {
@@ -131,15 +137,27 @@ $(document).ready(function() {
         }
     });
 
-    $('.announce_voice').on('click', function() {
+    $('.announce_voice').on('click', function(res) {
+
         if (! $('announce_voice').hasClass('disabled')) {
-            var completetext = $('.announcements tbody tr:visible')
+
+            var announcement_text = $('.announcements tbody tr:visible')
                 .find('td:nth-child(3)')
                 .text();
 
-            // Eng Seng stuff
-            alert(completetext);
-            // End Eng Seng stuff
+            $('.announce_voice').addClass('disabled');
+
+            $.ajax({
+            url: '/audio',
+            type: 'POST',
+            data: { usertext: announcement_text },
+            success: function(result) {
+                    var prefix = 'data:audio/mpeg;base64,';
+                    $('#synthesized_audio').attr('src', prefix + result.str_base64);
+                    $('#synthesized_audio')[0].play();
+                    $('.announce_voice').removeClass('disabled');
+                }
+            });
         }
     });
 
@@ -152,9 +170,16 @@ $(document).ready(function() {
             selected_text = $('.announcements tbody tr[id=' + selected_id + ']')
                            .find('td:nth-child(3)').text();
 
-            $('.announcements tbody tr[id=' + selected_id + ']')
-                .find('td:nth-child(3)')
+            var $row = $('.announcements tbody tr[id=' + selected_id + ']');
+
+            $row.find('td:nth-child(3)')
                 .html(AddDropDown(selected_text, regex, ddown_master));
+
+            if ($row.find('.dropdown').length <= 0) {
+                $('.announce_voice').removeClass('disabled');
+            }
         }
     });
+    
 });
+

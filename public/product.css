@@ -83,3 +83,8 @@
 .announcements tr {
     cursor: pointer;
 }
+
+#synthesized_audio {
+    display: none;
+}
+
