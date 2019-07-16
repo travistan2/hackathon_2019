@@ -88,3 +88,22 @@
     display: none;
 }
 
+/* Default map colour */
+#map {
+    margin: 0 auto;
+    background-color: #006443;
+    min-height: 90vh;
+}
+
+/* Define station colour on the map */
+.leaflet-pane > svg path.stationRect {
+    stroke: none;
+    fill: #8AC97C;
+    fill-opacity: 1;
+    fill-rule: evenodd;
+}
+
+/* For North-South Line (Purple) */
+.badge-info {
+    background-color: #875F9A;
+}

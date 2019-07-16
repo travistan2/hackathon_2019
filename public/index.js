@@ -192,5 +192,61 @@ $(document).ready(function() {
         }
     });
     
+    var map = L.map('map', {
+        crs: L.CRS.Simple,
+        minZoom: -1,
+        maxZoom: 1
+    });
+
+    var bounds = [[0,0], [900,1300]];
+    var image = L.imageOverlay('./map_components/TrackMap.png', bounds).addTo(map);
+    map.fitBounds(bounds);
+    map.setZoom(0);
+
+    // Track Section 0
+    L.rectangle([[810,150],[740,170]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW1</span> Pasir Ris");
+    L.rectangle([[810,245],[740,265]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW2</span> Tampines");
+    L.rectangle([[810,340],[740,360]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW3</span> Simei");
+    L.rectangle([[810,435],[740,455]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW4</span> <span class='badge badge-success'>CG</span> Tanah Merah");
+    L.rectangle([[810,530],[740,550]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW5</span> Bedok");
+    L.rectangle([[810,625],[740,645]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW6</span> Kembangan");
+    L.rectangle([[810,720],[740,740]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW7</span> Eunos");
+    L.rectangle([[810,815],[740,835]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW8</span> <span class='badge badge-warning'>CC9</span> Paya Lebar");
+    L.rectangle([[810,910],[740,930]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW9</span> Aljunied");
+    L.rectangle([[810,1005],[740,1025]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW10</span> Kallang");
+    L.rectangle([[810,1100],[740,1120]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW11</span> Lavender");
+
+    // Track Section 1
+    L.rectangle([[510,165],[440,185]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW12</span> <span class='badge badge-primary'>DT14</span> Bugis");
+    L.rectangle([[510,260],[440,280]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW13</span> <span class='badge badge-danger'>NS25</span> City Hall");
+    L.rectangle([[510,355],[440,375]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW14</span> <span class='badge badge-danger'>NS26</span> Raffles Place<p><img src='./map_components/EW14.png' width='300'></p>");
+    L.rectangle([[510,450],[440,470]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW15</span> Tanjong Pagar");
+    L.rectangle([[510,545],[440,565]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW16</span> <span class='badge badge-info'>NE3</span> Outram Park");
+    L.rectangle([[510,640],[440,660]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW17</span> Tiong Bahru");
+    L.rectangle([[510,735],[440,755]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW18</span> Redhill");
+    L.rectangle([[510,830],[440,850]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW19</span> Queenstown");
+    L.rectangle([[510,925],[440,945]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW20</span> Commonwealth");
+    L.rectangle([[510,1020],[440,1040]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW21</span> <span class='badge badge-warning'>CC22</span> Buona Vista");
+    L.rectangle([[510,1115],[440,1135]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW22</span> Dover");
+
+    // Track Section 2
+    L.rectangle([[210,180],[140,200]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW23</span> Clementi");
+    L.rectangle([[210,275],[140,295]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW24</span> <span class='badge badge-danger'>NS1</span> Jurong East");
+    L.rectangle([[210,370],[140,390]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW25</span> Chinese Garden");
+    L.rectangle([[210,465],[140,485]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW26</span> Lakeside");
+    L.rectangle([[210,560],[140,580]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW27</span> Boon Lay");
+    L.rectangle([[210,655],[140,675]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW28</span> Pioneer");
+    L.rectangle([[210,750],[140,770]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW29</span> Joo Koon");
+    L.rectangle([[210,845],[140,865]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW30</span> Gul Circle");
+    L.rectangle([[210,940],[140,960]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW31</span> Tuas Cresent");
+    L.rectangle([[210,1035],[140,1055]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW32</span> Tuas West Road");
+    L.rectangle([[210,1130],[140,1150]],{className:'stationRect'}).addTo(map).bindPopup("<span class='badge badge-success'>EW33</span> Tuas Link");
+
+    Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+    });
+
 });
 

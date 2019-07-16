@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="https://getbootstrap.com/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>CAD Announcement</title>
+    <title>Radio Dispatcher Workstation</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/product/">
 
@@ -16,6 +16,8 @@
 
     <!-- Custom styles for this template -->
     <link href="product.css" type="text/css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="leaflet.css">
   </head>
 
   <body>
@@ -36,15 +38,7 @@
     </nav>
 
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-      <div class="col-md-5 mx-auto">
-        <h1 class="display-5 font-weight-normal">Welcome To Dahkota's Train Services</h1>
-        <p class="lead font-weight-normal">____</p>
-        <p class="lead font-weight-normal">We Are the Most Popular Train Services Around The World.</p>
-        <p class="lead font-weight-normal">____</p>
-        <p class="lead font-weight-normal">Just click on desired announcements from the list,</p>
-        <p class="lead font-weight-normal">Select the dropdown box values,</p>
-        <p class="lead font-weight-normal">And press 'Announce!'</p>
-      </div>
+        <div id="map" class="col-9"></div>
     </div>
 
     <div class="table_container position-relative p-3 p-md-1 m-md-3 bg-light">
@@ -85,6 +79,8 @@
     <script src="popper.min.js.download"></script>
     <script src="bootstrap.min.js.download"></script>
     <script src="holder.min.js.download"></script>
+    <script src="leaflet.js"></script>
+    <script src="popper.min.js"></script>
     <script src="index.js"></script>
     <script>
       Holder.addTheme('thumb', {
