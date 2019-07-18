@@ -90,9 +90,8 @@
 
 /* Default map colour */
 #map {
-    margin: 0 auto;
     background-color: #006443;
-    min-height: 90vh;
+    min-height: 100vh;
 }
 
 /* Define station colour on the map */
@@ -106,4 +105,9 @@
 /* For North-South Line (Purple) */
 .badge-info {
     background-color: #875F9A;
+}
+
+/* For taskbar default class */
+.d-hidden {
+  display: none;
 }

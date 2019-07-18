@@ -2014,7 +2014,7 @@
         ne = Qi.extend({
             options: {
                 position: "bottomright",
-                prefix: '<a href="./zehong" title="Track Map Drafted by On the Right Track">2019 &copy; On the Right Track</a> &bull; This map is an approximation of the actual tracks of the SMRT East-West Line'
+                prefix: '<a href="./" title="Track Map Drafted by On the Right Track">2019 &copy; On the Right Track</a> &bull; This map is an approximation of the actual tracks of the SMRT East-West Line'
             },
             initialize: function(t) {
                 p(this, t), this._attributions = {}
