@@ -111,3 +111,8 @@
 .d-hidden {
   display: none;
 }
+
+#selStation {
+  position: fixed;
+}
+

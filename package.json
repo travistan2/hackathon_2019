@@ -18,6 +18,9 @@
     "mustache": "latest",
     "mysql": "^2.17.1",
     "node-mp3-player": "^1.0.3",
-    "pretty-dropdowns": "^4.17.0"
+    "pretty-dropdowns": "^4.17.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
+    "socket.io-stream": "^0.9.1"
   }
 }

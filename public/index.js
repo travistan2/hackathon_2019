@@ -171,9 +171,9 @@ $(document).ready(function() {
             type: 'POST',
             data: { usertext: announcement_text },
             success: function(result) {
-                    var prefix = 'data:audio/mpeg;base64,';
-                    $('#synthesized_audio').attr('src', prefix + result.str_base64);
-                    $('#synthesized_audio')[0].play();
+                    //var prefix = 'data:audio/mpeg;base64,';
+                    //$('#synthesized_audio').attr('src', prefix + result.str_base64);
+                    //$('#synthesized_audio')[0].play();
                     $('.announce_voice').removeClass('disabled');
                 }
             });
