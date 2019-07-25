@@ -13,18 +13,43 @@ const textToSpeech = require('@google-cloud/text-to-speech');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// The text to synthesize
+function propName(prop, value){
+   for(var i in prop) {
+       if (prop[i] == value){
+            return i;
+       }
+   }
+   return false;
+}
+
+var original_texts = {
+    raffles_place: '',
+    bueno_vista: '',
+    bugis: ''
+};
 
 function encode_base64(file) {
     var bitmap = fs.readFileSync(file);
     return new Buffer.from(bitmap).toString('base64');
 }
 
-async function ConvertSpeechText(usertext) {
+async function ConvertSpeechText(reqbody) {
+    var usertext = reqbody.usertext;
+    var loc = reqbody.location;
+    var fname;
+    if (loc == 'raffles_place') {
+        fname = 'output.mp3';
+    } 
+    else if (loc == 'bueno_vista') {
+        fname = 'output2.mp3';
+    } 
+    else if (loc == 'bugis') {
+        fname = 'output3.mp3';
+    } 
+        
     try {
-
-        if (fs.existsSync('output.mp3')) {
-            fs.unlinkSync('output.mp3', function(err) {});        
+        if (fs.existsSync(fname)) {
+            fs.unlinkSync(fname, function(err) {});        
         }
 
         // Creates a client
@@ -46,8 +71,9 @@ async function ConvertSpeechText(usertext) {
         const [response] = await client.synthesizeSpeech(request);
         // Write the binary audio content to a local file
         const writeFile = util.promisify(fs.writeFile);
-        await writeFile('output.mp3', response.audioContent, 'binary');
+        await writeFile(fname, response.audioContent, 'binary');
         console.log('finished writefile');
+        original_texts[loc] = usertext;
         return 0;
     } catch (error) {
         console.log('ConvertSpeechText exception: ' + error);
@@ -82,8 +108,12 @@ router.get('/raffles_place',function(req,res){
     res.sendFile(path.join(viewdir +'/raffles_place.html'));
 });
 
-router.get('/tanjong_pagar',function(req,res){
-    res.sendFile(path.join(viewdir +'/tanjong_pagar.html'));
+router.get('/bueno_vista',function(req,res){
+    res.sendFile(path.join(viewdir +'/bueno_vista.html'));
+});
+
+router.get('/bugis',function(req,res){
+    res.sendFile(path.join(viewdir +'/bugis.html'));
 });
 
 app.use(express.static('public'));
@@ -100,26 +130,55 @@ io.on('connection', function (socket) {
     socket.emit('initialconn', { data: '' });
 
     socket.on('clientping', function (data) {
-        if (data.stat == 'idle' && fs.existsSync('output.mp3')) {
-            var stats = fs.statSync('output.mp3');
+        var loc = data.station;
+        var fname;
+        if (loc == 'raffles_place') {
+            fname = 'output.mp3';
+        } 
+        else if (loc == 'bueno_vista') {
+            fname = 'output2.mp3';
+        } 
+        else if (loc == 'bugis') {
+            fname = 'output3.mp3';
+        } 
+
+        if (data.stat == 'idle' && fs.existsSync(fname)) {
+            var stats = fs.statSync(fname);
             var mtime = stats.mtime;
-            socket.emit('audiochunk', { mtime: mtime}, function(data) {
+            socket.emit('audiochunk', { mtime: mtime, station: data.station}, function(data) {
             });
-            console.log('notify audiochunk');
+            console.log('notify audiochunk ' + fname);
         }
     });
 
-    socket.on('getchunk', function (fn) {
+    socket.on('getchunk1', function (fn) {
+        console.log('get chunk1');
         if (fs.existsSync('output.mp3')) {
-            fn(null, { str_base64: encode_base64('output.mp3') });
-            console.log('sent chunk');
+            fn(null, { original_text: original_texts['raffles_place'], str_base64: encode_base64('output.mp3') });
+            console.log('sent chunk1');
+        }
+    });
+
+    socket.on('getchunk2', function (fn) {
+        console.log('get chunk2');
+        if (fs.existsSync('output2.mp3')) {
+            fn(null, { original_text: original_texts['bueno_vista'], str_base64: encode_base64('output2.mp3') });
+            console.log('sent chunk2');
+        }
+    });
+
+    socket.on('getchunk3', function (fn) {
+        console.log('get chunk3');
+        if (fs.existsSync('output3.mp3')) {
+            fn(null, { original_text: original_texts['bugis'], str_base64: encode_base64('output3.mp3') });
+            console.log('sent chunk3');
         }
     });
 });
 
 app.post('/audio', function(req, res) {
     console.log(req.body.usertext);
-    ConvertSpeechText(req.body.usertext)
+    ConvertSpeechText(req.body)
         .then(x => {
             /*
             io.sockets.emit('audiochunk', {}, function(data) {

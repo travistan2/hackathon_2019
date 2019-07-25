@@ -18,51 +18,86 @@
 
   </head>
 
-<body>
+<body onload="startTime()">
     <nav class="site-header sticky-top py-1">
       <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <!-- <a class="py-2" href="https://getbootstrap.com/docs/4.0/examples/product/#"> -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
-        <!-- </a> -->
-		<a class="py-2 d-none d-md-inline-block"> <marquee>Testing </marquee> </a>
-        <!-- <a class="py-2 d-none d-md-inline-block" href="https://getbootstrap.com/docs/4.0/examples/product/#">Login</a> -->
-        <!-- <a class="py-2 d-none d-md-inline-block" href="https://getbootstrap.com/docs/4.0/examples/product/#">Train Map</a> -->
-        <!-- <a class="py-2 d-none d-md-inline-block" href="https://getbootstrap.com/docs/4.0/examples/product/#">Train Monitoring</a> -->
-        <!-- <a class="py-2 d-none d-md-inline-block" href="https://getbootstrap.com/docs/4.0/examples/product/#">Announcement</a> -->
-        <!-- <a class="py-2 d-none d-md-inline-block" href="https://getbootstrap.com/docs/4.0/examples/product/#">Call Handling</a> -->
-        <!-- <a class="py-2 d-none d-md-inline-block" href="https://getbootstrap.com/docs/4.0/examples/product/#">RBS</a> -->
-        <!-- <a class="py-2 d-none d-md-inline-block" href="https://getbootstrap.com/docs/4.0/examples/product/#">Activity Log</a> -->
+        <div class="py-2 d-none d-md-inline-block">
+            <img src="./motorola_white.png" height="20px" style="padding-right: 20px">
+            Radio Dispatcher Workstation
+        </div>
+        <div class="py-2 d-none d-md-inline-block">Thursday, 25th July 2019</div>
+        <div class="py-2 d-none d-md-inline-block" id="clockToday"></div>
+        <div class="py-2 d-none d-md-inline-block"> Welcome User</div>
       </div>
     </nav>
 
-    <div class="position-relative bg-light"> <!-- class: p-3 p-md-5 m-md-3  overflow-hidden text-center -->
+    <div class="position-relative">
         <div class="row">
             <div id="map" class="col-9"></div>
                 <div id="taskbar" class="col-3">
-                     <div class="navbar sticky-top" id="masterText">
-                         <div class="column">
-                         <span style="color:red">
-                         <div id="selStation"></div></span>
-                     </div>
+				     <div class= "py-5 sticky-top" id="selStation"></div></span>
+					 <br>
+						<!-- <select name="Type" id="typeSel" size="1"> -->
+							<!-- <option value="" selected="selected">Announcement Type</option> -->
+							<!-- <option value="" >Cancelled train</option> -->
+							<!-- <option value="" >CCTV</option> -->
+							<!-- <option value="" >Cycling</option> -->
+							<!-- <option value="" >Fast Train</option> -->
+							<!-- <option value="" >Luggage</option> -->
+							<!-- <option value="" >Next fastest service</option> -->
+							<!-- <option value="" >Next train</option> -->
+							<!-- <option value="" >Parking</option> -->
+							<!-- <option value="" >Platform Alteration</option> -->
+							<!-- <option value="" >Security</option> -->
+							<!-- <option value="" >Short Platforms</option> -->
+							<!-- <option value="" >Short-formed train</option> -->
+							<!-- <option value="" >Ticket Checks</option> -->
+							<!-- <option value="" >Tickets</option> -->
+							<!-- <option value="" >Warm Weather</option> -->
+							<!-- <option value="" >Tickets</option> -->
+							<!-- <option value="" >Wet Weather</option> -->
+							<!-- <option value="" >Engineering Works</option> -->
+							<!-- <option value="" >Fire Alarm Testing</option> -->
+							<!-- <option value="" >Mind The Gap</option> -->
+							<!-- <option value="" >Safety</option> -->
+							<!-- <option value="" >Door Locking</option> -->
+							<!-- <option value="" >Help Point Next Train Button</option> -->
+						<!-- </select> -->
+						<!-- <br> -->
+						<!-- <br> -->
+						<!-- <select name="Announcement Text" id="textSel" size="1"> -->
+							<!-- <option value="" id="announce_text" selected="selected">Please Select Announcement Type First</option> -->
+						<!-- </select> -->
+						 
+					 <div class="column">
+					 <span style="color:red">
                  </div>
             </div>
         </div>
     </div>
-
-    <div class="table_container position-relative p-3 p-md-1 m-md-3 bg-light">
-        <a class="btn btn-outline-secondary mx-3 my-3 back_screen">Back</a>
-        <!-- <button class="btn btn-outline-secondary language_menu_list" data-toggle="dropdown">ja-JP</button> -->
-        <a class="btn btn-outline-secondary mx-3 my-3 announce_voice float-right">Announce!</a>
-        <audio control id="synthesized_audio" preload="none"> 
-            <source src="" type="AudioType">
-        </audio>
-        <table class="table table-bordered table-hover announcements">
-            <thead>
-                <tr>
-                    <th scope="col">Number</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Announcement Text</th>
-                </tr>
+	
+	 <div class="log-window bg-light px-4">
+        <div class="row">
+            <div class="col-12">
+                <h6>Workstation Log Console</h6>
+                <pre id="logWin"></pre>
+            </div>
+        </div>
+    </div>
+	
+	<div class="table_container position-relative p-3 p-md-1 m-md-3 bg-light">
+							<a class="btn btn-outline-secondary mx-3 my-3 back_screen">Back</a>
+							<a class="btn btn-outline-secondary mx-3 my-3 announce_voice float-right">Announce!</a>
+							<audio control id="synthesized_audio" preload="none"> 
+								<source src="" type="AudioType">
+							</audio>
+							<table class="table table-bordered table-hover announcements">
+								<thead>
+									<tr>
+										<th scope="col">Number</th>
+										<th scope="col">Type</th>
+										<th scope="col">Announcement Text</th>
+									</tr>
             </thead>
             <tbody>
             </tbody>
@@ -73,7 +108,7 @@
       <div class="row">
         <div class="col-12 col-md">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mb-2"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
-          <small class="d-block mb-3 text-muted">© 2019-2020 Hytera</small>
+          <small class="d-block mb-3 text-muted">&copy; 2019-2020</small>
         </div>
       </div>
     </footer>
@@ -86,16 +121,19 @@
 <!--    <script>window.jQuery || document.write('<script src="jquery-slim.min.js"><\/script>')</script><script src="jquery-slim.min.js"></script> -->
     <script src="popper.min.js"></script>
     <script src="bootstrap.min.js"></script>
-    <script src="holder.min.js"></script>
+    <!-- <script src="holder.min.js"></script> -->
     <script src="leaflet.js"></script>
     <script src="popper.min.js"></script>
     <script src="index.js"></script>
     <script>
+        document.getElementById('logWin').innerHTML = timeStamp + "System Initialised";
+    </script>
+    <!-- <script>
       Holder.addTheme('thumb', {
         bg: '#55595c',
         fg: '#eceeef',
         text: 'Thumbnail'
       });
-    </script>
+    </script> -->
 
 </body></html>

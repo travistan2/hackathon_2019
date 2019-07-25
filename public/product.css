@@ -1,5 +1,9 @@
+body {
+  /* overflow: hidden; */
+}
+
 .container {
-  max-width: 960px;
+  max-width: 100%;
 }
 
 /*
@@ -10,6 +14,7 @@
   background-color: rgba(0, 0, 0, .85);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
+  color: #fff;
 }
 .site-header a {
   color: #999;
@@ -80,6 +85,12 @@
 
 .overflow-hidden { overflow: hidden; }
 
+.col-centered{
+    float: none;
+    margin: 0 auto;
+    text-align: center;
+}
+
 .announcements tr {
     cursor: pointer;
 }
@@ -91,7 +102,7 @@
 /* Default map colour */
 #map {
     background-color: #006443;
-    min-height: 100vh;
+    min-height: 85vh;
 }
 
 /* Define station colour on the map */
@@ -112,7 +123,100 @@
   display: none;
 }
 
-#selStation {
-  position: fixed;
+.log-workstation {
+  max-height: 100px;
+  overflow-y: scroll;
 }
 
+.led-box {
+  height: 30px;
+  width: 25%;
+  margin: 10px 0;
+  float: left;
+}
+
+.led-box p {
+  font-size: 12px;
+  text-align: center;
+  margin: 1em;
+}
+
+.led-red {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #F00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+}
+
+.led-green {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #00FF00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #00FF00 0 2px 12px;
+}
+
+.led-green-blink {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #00FF00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #00FF00 0 2px 12px;
+  -webkit-animation: blinkGreen 1s infinite;
+  -moz-animation: blinkGreen 1s infinite;
+  -ms-animation: blinkGreen 1s infinite;
+  -o-animation: blinkGreen 1s infinite;
+  animation: blinkGreen 1s infinite;
+}
+
+@-webkit-keyframes blinkGreen {
+    from { background-color: #00FF00; }
+    50% { background-color: #003300; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #00FF00 0 2px 0; }
+    to { background-color: #00FF00; }
+}
+@-moz-keyframes blinkGreen {
+    from { background-color: #00FF00; }
+    50% { background-color: #003300; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #00FF00 0 2px 0; }
+    to { background-color: #00FF00; }
+}
+@-ms-keyframes blinkGreen {
+    from { background-color: #00FF00; }
+    50% { background-color: #003300; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #00FF00 0 2px 0; }
+    to { background-color: #00FF00; }
+}
+@-o-keyframes blinkGreen {
+    from { background-color: #00FF00; }
+    50% { background-color: #003300; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #00FF00 0 2px 0; }
+    to { background-color: #00FF00; }
+}
+@keyframes blinkGreen {
+    from { background-color: #00FF00; }
+    50% { background-color: #003300; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #00FF00 0 2px 0; }
+    to { background-color: #00FF00; }
+}
+
+.scrolltext {
+    width: 85vw;
+}
+
+.hidden_star {
+	display: none;
+}
+
+#taskbar {
+	overflow: scroll; 
+	max-height: 85vh;
+}
+
+#selStation {
+	position: fixed;
+}
+
+/*
+#myForm {
+  visibility: hidden;
+}*/

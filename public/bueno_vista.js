@@ -1,9 +1,9 @@
-// raffles_place.js
+// bueno_vista.js
 
 var timerFunc;
 var curr_status = 'idle';
 var last_ts = moment();
-const station = 'raffles_place';
+const station = 'bueno_vista';
 
 $(document).ready(function() {
 
@@ -24,7 +24,7 @@ $(document).ready(function() {
             curr_status = 'busy';
             $('.led').removeClass('led-green').addClass('led-green-blink');  
             last_ts = data.mtime;
-            socket.emit('getchunk1', function(err, payload) {
+            socket.emit('getchunk2', function(err, payload) {
                 console.log(payload);
                 $('.scrolltext').text(payload.original_text);                
                 var prefix = 'data:audio/mpeg;base64,';
